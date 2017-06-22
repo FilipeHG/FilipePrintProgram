@@ -1,27 +1,25 @@
-<?php 
-	require("IPrintRule.php");
-	require("Printer.php");
+<?php
+ 	 
+require_once 'lib/classes/AutoLoad.php';
 
-	$printRequiredRules = array(
-		"MultipleOfThree",
-		"MultipleOfFive",
-		"MultipleOfThreeAndFive"
-	);
+$printRequiredRules = array(
+	"MultipleOfThree",
+	"MultipleOfFive",
+	"MultipleOfThreeAndFive"
+);
 
-	$printer = new Printer();
+$printer = new Printer();
 
-	for ($i = 1; $i <= 100 ; $i++) {
-		$printValue = $i;
-		
-		foreach ($printRequiredRules as $printRule)
-		{
-			include_once($printRule.'.php');
+for ($i = 1; $i <= 100 ; $i++)
+{
+	$printValue = $i;
+	
+	foreach ($printRequiredRules as &$printRule)
+	{
+		$objPrintRule = new $printRule();
 
-			$objPrintRule = new $printRule();
-
-			$printValue = $printer->getPrintValueByRules($objPrintRule, $i, $printValue);
-		}
-
-		echo $printValue . '<br />';
+		$printValue = $printer->getPrintValueByRules($objPrintRule, $i, $printValue);
 	}
-?>
+
+	echo $printValue . '<br />';
+}

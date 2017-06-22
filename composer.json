@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-0": {
+			"classes\\": "lib/",
+			"interfaces\\": "lib/"
+		}
+    },
+	"require-dev": {
+    },
+    "require": {
+        "phpunit/phpunit": "^6.2"
+    }
+}
