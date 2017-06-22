@@ -1,6 +1,6 @@
 <?php
 
-namespace Filipe\lib\classes;
+namespace FilipePrintProgram\lib\classes;
 
 class AutoLoad
 {
