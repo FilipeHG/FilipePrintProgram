@@ -10,24 +10,30 @@ class AutoLoadTest extends PHPUnit_Framework_TestCase
 	{
 		$this->folderPath = str_replace('/', '\\', dirname(__DIR__, 1));
 
-		spl_autoload_register([$this, 'loadInterfaces']);
-		spl_autoload_register([$this, 'loadClasses']);
+		spl_autoload_register([$this, 'testLoadInterfaces']);
+		spl_autoload_register([$this, 'testLoadTemplates']);
+		spl_autoload_register([$this, 'testLoadClasses']);
 	}
 
-	private function loadInterfaces()
+	private function testLoadInterfaces()
 	{
-		return $this->loadFiles('Interfaces');
+		return $this->testLoadFiles('interfaces');
 	}
 
-	private function loadClasses()
+	private function testLoadTemplates()
 	{
-		return $this->loadFiles('Classes');
+		return $this->testLoadFiles('templates');
 	}
 
-	private function loadFiles(string $folder)
+	private function testLoadClasses()
+	{
+		return $this->testLoadFiles('classes');
+	}
+
+	private function testLoadFiles(string $folder)
 	{
 		$this->assertContains('\tests\lib', $this->folderPath);
-
+		
 		$files = array_slice(scandir($this->folderPath.'\\'.$folder.'\\'), 2);
 
 		$this->assertTrue(count($files) > 0);
@@ -41,4 +47,4 @@ class AutoLoadTest extends PHPUnit_Framework_TestCase
 	}
 }
 
-new AutoLoad;
+new AutoLoadTest;

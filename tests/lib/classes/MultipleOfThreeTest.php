@@ -1,27 +1,20 @@
 <?php
 
-require_once 'PHPUnit/Autoload.php';
-require_once '../interfaces/IPrintRuleTest.php';
+declare(strict_types=1);
 
-class MultipleOfThreeTest extends PHPUnit_Framework_TestCase implements IPrintRuleTest
+require_once '../templates/PrintRuleTemplateTest.php';
+
+class MultipleOfThreeTest extends PrintRuleTemplateTest
 {
-	private $printValue = "Linio";
-	
-	public function testSetPrintRule (int $index) : bool
+	public function testSetPrintValue (): void
 	{
-		$this->assertTrue($index > 0 && $index <= 100);
-
-		$expected = $index % 3 == 0;
-		
-		$this->assertTrue(is_bool($expected));
-
-		return $expected;
+		$this->printValue = "Linio";
 	}
 
-	public function testGetPrintValue () : string
+	public function testSetPrintRule (int $index): bool
 	{
-		$this->assertEquals('Linio', $this->printValue);
-
-		return $this->printValue;
+		$this->assertTrue($index > 0 && $index <= 100);
+		
+		return $index % 3 == 0;
 	}
 }

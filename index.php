@@ -2,24 +2,22 @@
  	 
 require_once 'lib/classes/AutoLoad.php';
 
-$printRequiredRules = array(
-	"MultipleOfThree",
-	"MultipleOfFive",
-	"MultipleOfThreeAndFive"
-);
-
 $printer = new Printer();
+$ruleOne = new MultipleOfThree();
+$ruleTwo = new MultipleOfFive();
+$ruleThree = new MultipleOfThreeAndFive();
+$noRule = new NoRule();
 
-for ($i = 1; $i <= 100 ; $i++)
+$ruleOne->setNextPrintRule($ruleTwo);
+$ruleTwo->setNextPrintRule($ruleThree);
+$ruleThree->setNextPrintRule($noRule);
+
+
+for ($i = 1; $i <= 100 ; ++$i)
 {
-	$printValue = $i;
-	
-	foreach ($printRequiredRules as &$printRule)
-	{
-		$objPrintRule = new $printRule();
+	$printer->setPrintValueByRule($ruleOne, $i, $i);
 
-		$printValue = $printer->getPrintValueByRules($objPrintRule, $i, $printValue);
-	}
+	$printValue = $printer->getPrintValueByRule();
 
 	echo $printValue . '<br />';
 }

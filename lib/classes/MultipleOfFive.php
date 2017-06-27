@@ -1,16 +1,16 @@
 <?php
 
-class MultipleOfFive implements IPrintRule
+declare(strict_types=1);
+
+class MultipleOfFive extends PrintRuleTemplate
 {
-	private $printValue = "IT";
-	
-	public function setPrintRule (int $index) : bool
+	public function setPrintValue (): void
 	{
-		return $index % 5 == 0;
+		$this->printValue = "IT";
 	}
 
-	public function getPrintValue () : string
+	public function setPrintRule (int $index): bool
 	{
-		return $this->printValue;
+		return $index % 5 == 0;
 	}
 }

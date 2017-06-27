@@ -1,27 +1,20 @@
 <?php
 
-require_once 'PHPUnit/Autoload.php';
-require_once '../interfaces/IPrintRuleTest.php';
+declare(strict_types=1);
 
-class MultipleOfFiveTest extends PHPUnit_Framework_TestCase implements IPrintRuleTest
+require_once '../templates/PrintRuleTemplateTest.php';
+
+class MultipleOfFiveTest extends PrintRuleTemplateTest
 {
-	private $printValue = "IT";
-	
-	public function testSetPrintRule (int $index) : bool
+	public function testSetPrintValue (): void
 	{
-		$this->assertTrue($index > 0 && $index <= 100);
-
-		$expected = $index % 5 == 0;
-		
-		$this->assertTrue(is_bool($expected));
-
-		return $expected;
+		$this->printValue = "IT";
 	}
 
-	public function testGetPrintValue () : string
+	public function testSetPrintRule (int $index): bool
 	{
-		$this->assertEquals('IT', $this->printValue);
-
-		return $this->printValue;
+		$this->assertTrue($index > 0 && $index <= 100);
+		
+		return $index % 5 == 0;
 	}
 }

@@ -11,17 +11,23 @@ class AutoLoad
 		$this->folderPath = str_replace('/', '\\', dirname(__DIR__, 1));
 
 		spl_autoload_register([$this, 'loadInterfaces']);
+		spl_autoload_register([$this, 'loadTemplates']);
 		spl_autoload_register([$this, 'loadClasses']);
 	}
 
 	private function loadInterfaces()
 	{
-		return $this->loadFiles('Interfaces');
+		return $this->loadFiles('interfaces');
+	}
+
+	private function loadTemplates()
+	{
+		return $this->loadFiles('templates');
 	}
 
 	private function loadClasses()
 	{
-		return $this->loadFiles('Classes');
+		return $this->loadFiles('classes');
 	}
 
 	private function loadFiles(string $folder)

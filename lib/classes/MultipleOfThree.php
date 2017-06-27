@@ -1,16 +1,16 @@
 <?php
 
-class MultipleOfThree implements IPrintRule
+declare(strict_types=1);
+
+class MultipleOfThree extends PrintRuleTemplate
 {
-	private $printValue = "Linio";
-	
-	public function setPrintRule (int $index) : bool
+	public function setPrintValue (): void
 	{
-		return $index % 3 == 0;
+		$this->printValue = "Linio";
 	}
 
-	public function getPrintValue () : string
+	public function setPrintRule (int $index): bool
 	{
-		return $this->printValue;
+		return $index % 3 == 0;
 	}
 }

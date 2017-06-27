@@ -1,16 +1,16 @@
 <?php
 
-class MultipleOfThreeAndFive implements IPrintRule
+declare(strict_types=1);
+
+class MultipleOfThreeAndFive extends PrintRuleTemplate
 {
-	private $printValue = "Linianos";
-	
-	public function setPrintRule (int $index) : bool
+	public function setPrintValue (): void
 	{
-		return $index % 3 == 0 && $index % 5 == 0;
+		$this->printValue = "Linianos";
 	}
 
-	public function getPrintValue () : string
+	public function setPrintRule (int $index): bool
 	{
-		return $this->printValue;
+		return $index % 3 == 0 && $index % 5 == 0;
 	}
 }
